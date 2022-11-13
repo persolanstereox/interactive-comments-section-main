@@ -1,0 +1,27 @@
+$Moderate-blue: hsl(238, 40%, 52%);
+$Soft-Red: hsl(358, 79%, 66%);
+$Light-grayish-blue: hsl(239, 57%, 85%);
+$Pale-red: hsl(357, 100%, 86%);
+$Dark-blue: hsl(212, 24%, 26%);
+$Grayish-Blue: hsl(211, 10%, 45%);
+$Very-light-gray: hsl(228, 33%, 97%);
+$White: hsl(0, 0%, 100%);
+$BoxBorderRadious: 8px;
+
+@mixin boxDimensions {
+  max-width: 70rem;
+  min-height: 16rem;
+  background-color: $White;
+  border-radius: $BoxBorderRadious;
+  margin-bottom: 2.5rem;
+  overflow-wrap: anywhere;
+}
+@mixin flexCenter {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+@mixin defaultBtn {
+  border: none;
+  background: local;
+}

@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Comment section</title>
+    <link rel="stylesheet" href="styles/style.css" />
+    <script defer src="app.js"></script>
+  </head>
+  <body>
+    <nav>
+      <p>Log in to get started</p>
+      <img src="images/commenterio-logo.png" alt="site logo" class="logo" />
+      <form class="login">
+        <input type="text" placeholder="user" class="login__input" id="usernameInput" />
+        <input type="password" placeholder="password" class="login__input" id="passwordInput" />
+        <button class="login__btn">&rarr;</button>
+      </form>
+    </nav>
+    <main>
+      <section class="comments">
+        <div class="main__comment-container">
+          <div class="main__comment comment">
+            <div class="voting-wrapper">
+              <div class="voting-box">
+                <button class="plus__vote voting--btn">
+                  <img src="images/icon-plus.svg" alt="plus-vote-button" />
+                </button>
+                <span class="voting__counter">12</span>
+                <button class="minus__vote voting--btn">
+                  <img src="images/icon-minus.svg" alt="minus-vote-button" />
+                </button>
+              </div>
+            </div>
+            <div class="comment__info-wrapper">
+              <div class="comment__row1-box">
+                <div class="row1__column1-box">
+                  <img src="images/avatars/image-amyrobson.png" alt="avatar" />
+                  <h1 class="nick">amyrobson</h1>
+                  <h1 class="comment__created__at">1 month ago</h1>
+                </div>
+                <button class="reply-btn">
+                  <img src="images/icon-reply.svg" alt="reply-icon" />
+                  <h1 class="Reply">Reply</h1>
+                </button>
+              </div>
+              <div class="comment__row2-box">
+                <p class="comment__text">
+                  Impressive! Though it seems the drag feature could be
+                  improved. But overall it looks incredible. You've nailed the
+                  design and the responsiveness at various breakpoints works
+                  really well.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="main__comment-container">
+          <div class="main__comment comment">
+            <div class="voting-wrapper">
+              <div class="voting-box">
+                <button class="plus__vote voting--btn">
+                  <img src="images/icon-plus.svg" alt="plus-vote-button" />
+                </button>
+                <span class="voting__counter">5</span>
+                <button class="minus__vote voting--btn">
+                  <img src="images/icon-minus.svg" alt="minus-vote-button" />
+                </button>
+              </div>
+            </div>
+            <div class="comment__info-wrapper">
+              <div class="comment__row1-box">
+                <div class="row1__column1-box">
+                  <img src="images/avatars/image-maxblagun.png" alt="avatar" />
+                  <h1 class="nick">maxblagun</h1>
+                  <h1 class="comment__created__at">2 weeks ago</h1>
+                </div>
+                <button class="reply-btn">
+                  <img src="images/icon-reply.svg" alt="reply-icon" />
+                  <h1 class="Reply">Reply</h1>
+                </button>
+              </div>
+              <div class="comment__row2-box">
+                <p class="comment__text">
+                  Woah, your project looks awesome! How long have you been
+                  coding for? I'm still new, but think I want to dive into React
+                  as well soon. Perhaps you can give me an insight on where I
+                  can learn React? Thanks!
+                </p>
+              </div>
+            </div>
+          </div>
+          <div class="replies">
+            <div class="reply comment">
+              <div class="voting-wrapper">
+                <div class="voting-box">
+                  <button class="plus__vote voting--btn">
+                    <img src="images/icon-plus.svg" alt="plus-vote-button" />
+                  </button>
+                  <span class="voting__counter">4</span>
+                  <button class="minus__vote voting--btn">
+                    <img src="images/icon-minus.svg" alt="minus-vote-button" />
+                  </button>
+                </div>
+              </div>
+              <div class="comment__info-wrapper">
+                <div class="comment__row1-box">
+                  <div class="row1__column1-box">
+                    <img
+                      src="images/avatars/image-ramsesmiron.png"
+                      alt="avatar"
+                    />
+                    <h1 class="nick">ramsesmiron</h1>
+                    <h1 class="comment__created__at">1 week ago</h1>
+                  </div>
+                  <button class="reply-btn">
+                    <img src="images/icon-reply.svg" alt="reply-icon" />
+                    <h1 class="Reply">Reply</h1>
+                  </button>
+                </div>
+                <div class="comment__row2-box">
+                  <p class="comment__text">
+                    If you're still new, I'd recommend focusing on the
+                    fundamentals of HTML, CSS, and JS before considering React.
+                    It's very tempting to jump ahead but lay a solid foundation
+                    first.
+                  </p>
+                </div>
+              </div>
+            </div>
+            <div class="reply comment">
+              <div class="voting-wrapper">
+                <div class="voting-box">
+                  <button class="plus__vote voting--btn">
+                    <img src="images/icon-plus.svg" alt="plus-vote-button" />
+                  </button>
+                  <span class="voting__counter">2</span>
+                  <button class="minus__vote voting--btn">
+                    <img src="images/icon-minus.svg" alt="minus-vote-button" />
+                  </button>
+                </div>
+              </div>
+              <div class="comment__info-wrapper">
+                <div class="comment__row1-box">
+                  <div class="row1__column1-box">
+                    <img
+                      src="images/avatars/image-juliusomo.png"
+                      alt="avatar"
+                    />
+                    <h1 class="nick">juliusomo</h1>
+                    <h1 class="comment__created__at">2 days ago</h1>
+                  </div>
+                  <button class="reply-btn">
+                    <img src="images/icon-reply.svg" alt="reply-icon" />
+                    <h1 class="Reply">Reply</h1>
+                  </button>
+                </div>
+                <div class="comment__row2-box">
+                  <p class="comment__text">
+                    I couldn't agree more with this. Everything moves so fast
+                    and it always seems like everyone knows the newest
+                    library/framework. But the fundamentals are what stay
+                    constant.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+      <section class="adding__comments">
+        <form class="adding__comments-container">
+          <div class="avatar-container">
+            <img class="logged__avatar" src="./images/avatars/image-juliusomo.png" alt="">
+          </div>
+          <textarea placeholder="Add a comment..."></textarea>
+          <div class="send__comment-container">
+            <button class="send__comment">SEND</button>
+          </div>
+          
+        </form>
+      </section>
+    </main>
+    <!-- <img src="fd768be78af342fc8f5cc0286537a760-removebg-preview.png" alt=""> -->
+  </body>
+</html>
