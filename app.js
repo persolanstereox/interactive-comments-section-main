@@ -15,7 +15,7 @@ const allComments = document.querySelector('.comments');
 const userLogin = document.getElementById('usernameInput');
 const passwordLogin = document.getElementById('passwordInput');
 const btnLogin = document.querySelector('.login__btn');
-const btnsPlusVote = document.querySelectorAll('.plus__vote');
+let btnsPlusVote = document.querySelectorAll('.plus__vote');
 const btnsMinusVote = document.querySelectorAll('.minus__vote');
 const votingCounters = document.querySelectorAll('.voting__counter');
 const btnsReply = document.querySelectorAll('.reply-btn');
@@ -75,9 +75,14 @@ class App {
     btnSendComment.addEventListener('click', this._newComment.bind(this));
     btnsPlusVote.forEach(btn => {
       btn.addEventListener('click', () => {
-        this._plusVote(2)
-        console.log(btn.closest(document.querySelectorAll('.comment')));
-      })
+        console.log(btn);
+        let btnClosestComment = btn.closest('.comment').getAttribute('data-id');
+        console.log(btnClosestComment);
+      });
+    });
+    btnsReply.forEach(reply => {
+      
+      reply.addEventListener('click', this._newReply.bind(this))
     })
   }
 
@@ -102,7 +107,7 @@ class App {
   }
   _newComment(e) {
     e.preventDefault();
-    if(!this.currentUser) return;
+    if (!this.currentUser) return;
     const id = Math.trunc(Math.random() * 100) + 1;
     const username = this.currentUser.username;
     const avatar = this.currentUser.avatarSrc;
@@ -112,8 +117,14 @@ class App {
     let comment;
 
     if (!text) return;
-    comment = new Comment(id, username, avatar, date.toISOString(), text, votes);
-    
+    comment = new Comment(
+      id,
+      username,
+      avatar,
+      date,
+      text,
+      votes
+    );
 
     // Add comment to all comments array
     this.comments.push(comment);
@@ -126,7 +137,7 @@ class App {
     textarea.value = '';
   }
   _addComment(comment) {
-    let html = `<div class="main__comment" data-id=${comment.id}>
+    let html = `<div class="main__comment comment" data-id=${comment.id}>
     <div class="voting-wrapper">
       <div class="voting-box">
         <button class="plus__vote voting--btn">
@@ -143,7 +154,7 @@ class App {
         <div class="row1__column1-box">
           <img src="${comment.avatar}" />
           <h1 class="nick">${comment.username}</h1>
-          <h1 class="comment__created__at">${comment.date}</h1>
+          <h1 class="comment__created__at">${this._formatDate(comment.date)}</h1>
         </div>
         <button class="reply-btn">
           <img src="images/icon-reply.svg" alt="reply-icon" />
@@ -159,10 +170,71 @@ class App {
   </div>`;
     allComments.insertAdjacentHTML('beforeend', html);
   }
+  _newReply(e) {
+    e.preventDefault();
+    console.log('test');
+    console.log(e);
+    // if (!this.currentUser) return; 
+    // const id = Math.trunc(Math.random() * 100) + 1;
+    // const username = this.currentUser.username;
+    // const avatar = this.currentUser.avatarSrc;
+    // const date = new Date();
+    // const text = textarea.value;
+    // const votes = 0;
+    let reply;
+
+    // if (!text) return;
+    // reply = new Comment(
+    //   id,
+    //   username,
+    //   avatar,
+    //   date,
+    //   text,
+    //   votes
+    // );
+    
+    this._showReplyForm(e);
+    
+    
+
+  }
+  _showReplyForm(e) {
+    const closestComment = e.target.closest('.main__comment-container');
+    console.log(closestComment);
+    const html = `<div class="adding__comments">
+    <form class="adding__comments-container">
+      <div class="avatar-container">
+        <img
+          class="logged__avatar"
+          src="./images/avatars/image-juliusomo.png"
+          alt=""
+        />
+      </div>
+      <textarea placeholder="Add a comment..."></textarea>
+      <div class="send__comment-container">
+        <button class="send__comment">SEND</button>
+      </div>
+    </form>
+  </div>`
+ closestComment.insertAdjacentHTML('beforeend', html)
+  console.log('test 2');
+  }
   _plusVote(id) {
     votingCounters.forEach(vote => {
       console.log(`jdfgfgj ${id}`);
-    })
+    });
+  }
+  _formatDate(date) {
+    const calcDaysPassed = (date1, date2) =>
+      Math.round(Math.abs(date2 - date1) / (1000 * 60 * 60 * 24));
+    const daysPassed = calcDaysPassed(new Date(), date);
+    if (daysPassed === 0) return 'Today';
+    if (daysPassed === 1) return 'Yesterday';
+    if (daysPassed <= 7) return `${daysPassed} days ago`;
+    
+    
+    
+    return new Intl.DateTimeFormat('en-US').format(date);
   }
 }
 const app = new App();
