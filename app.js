@@ -22,7 +22,9 @@ const btnsReply = document.querySelectorAll('.reply-btn');
 const textarea = document.querySelector('textarea');
 const btnSendComment = document.querySelector('.send__comment');
 const loggedAvatar = document.querySelector('.logged__avatar');
-
+const addCommentForm = document.querySelector('.adding__comments');
+userLogin.value = 'amyrobson';
+passwordLogin.value = 2222;
 
 const Account = function (username, password, avatarSrc) {
   this.username = username;
@@ -171,8 +173,7 @@ class App {
     const username = this.currentUser.username;
     const avatar = this.currentUser.avatarSrc;
     const date = new Date();
-    // const text = replyTextarea.value;
-    const text = document.querySelector('.reply__textarea').value
+    const text = document.querySelector('.reply__textarea').value;
     const votes = 0;
     let reply;
 
@@ -181,14 +182,18 @@ class App {
     console.log(reply);
 
     this._addReply(e, reply);
+    this._removeReplyForm(e);
   }
   _showReplyForm(e) {
-    
     e.preventDefault();
     if (!this.currentUser) return;
-    const closestComment = e.target.closest('.main__comment-container');
 
-    const html = `<div class="adding__comments">
+    if (document.querySelector('.adding__replies')) {
+      document.querySelector('.adding__comments').remove();
+    }
+
+    const closestComment = e.target.closest('.main__comment-container');
+    const html = `<div class="adding__comments adding__replies">
     <form class="adding__comments-container">
       <div class="avatar-container">
         <img
@@ -204,13 +209,24 @@ class App {
     </form>
   </div>`;
     closestComment.insertAdjacentHTML('beforeend', html);
+    this._hideCommentForm();
     // let replyTextarea = document.querySelector('adding__comments').children('textarea');
-    console.log(replyTextarea);
-    document.querySelector('.send__reply').addEventListener('click', this._newReply.bind(this))
+    // console.log(replyTextarea);
+    const sendReplyBtn = document.querySelector('.send__reply');
+    sendReplyBtn.addEventListener('click', this._newReply.bind(this));
+  }
+  _removeReplyForm(e) {
+    const closestComment = e.target.closest('.main__comment-container');
+    closestComment.lastElementChild.remove();
+  }
+  _hideCommentForm() {
+    if (document.querySelector('.adding__replies')) {
+      addCommentForm.classList.add('hidden');
+    }
   }
   _addReply(e, reply) {
-    
-    const closestReplyContainer = e.target.closest('.main__comment-container').firstElementChild.nextElementSibling
+    const closestReplyContainer = e.target.closest('.main__comment-container')
+      .firstElementChild.nextElementSibling;
     // console.log(closestReplyContainer.firstElementChild.nextElementSibling);
     const html = `<div class="reply comment">
     <div class="voting-wrapper">
@@ -232,8 +248,7 @@ class App {
             alt="avatar"
           />
           <h1 class="nick">${reply.username}</h1>
-          <h1 class="comment__created__at">${this._formatDate(
-            reply.date)}</h1>
+          <h1 class="comment__created__at">${this._formatDate(reply.date)}</h1>
         </div>
         <button class="reply-btn">
           <img src="images/icon-reply.svg" alt="reply-icon" />
@@ -247,8 +262,8 @@ class App {
       </div>
     </div>
   </div>`;
-  closestReplyContainer.insertAdjacentHTML('beforeend', html);
-  
+    closestReplyContainer.insertAdjacentHTML('beforeend', html);
+    addCommentForm.classList.remove('hidden');
   }
   _plusVote(id) {
     votingCounters.forEach(vote => {

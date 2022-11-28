@@ -196,4 +196,8 @@ textarea {
   background-color: hsl(238deg, 40%, 52%);
   color: white;
   font-family: "Rubik", sans-serif;
+}
+
+.hidden {
+  display: none;
 }/*# sourceMappingURL=style.css.map */
