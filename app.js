@@ -15,7 +15,7 @@ const allComments = document.querySelector('.comments');
 const userLogin = document.getElementById('usernameInput');
 const passwordLogin = document.getElementById('passwordInput');
 const btnLogin = document.querySelector('.login__btn');
-let btnsPlusVote = document.querySelectorAll('.plus__vote');
+const btnsPlusVote = document.querySelectorAll('.plus__vote');
 const btnsMinusVote = document.querySelectorAll('.minus__vote');
 const votingCounters = document.querySelectorAll('.voting__counter');
 const btnsReply = document.querySelectorAll('.reply-btn');
@@ -76,14 +76,13 @@ class App {
     btnLogin.addEventListener('click', this._Login.bind(this));
     btnSendComment.addEventListener('click', this._newComment.bind(this));
     btnsPlusVote.forEach(btn => {
-      btn.addEventListener('click', () => {
-        console.log(btn);
-        let btnClosestComment = btn.closest('.comment').getAttribute('data-id');
-        console.log(btnClosestComment);
-      });
+      btn.addEventListener('click', this._plusVote.bind(this));
     });
     btnsReply.forEach(reply => {
       reply.addEventListener('click', this._showReplyForm.bind(this));
+    });
+    btnsMinusVote.forEach(btn => {
+      btn.addEventListener('click', this._minusVote.bind(this));
     });
   }
 
@@ -265,10 +264,19 @@ class App {
     closestReplyContainer.insertAdjacentHTML('beforeend', html);
     addCommentForm.classList.remove('hidden');
   }
-  _plusVote(id) {
-    votingCounters.forEach(vote => {
-      console.log(`jdfgfgj ${id}`);
-    });
+  _plusVote(e) {
+    e.preventDefault();
+
+    const closestCounter = e.currentTarget.nextElementSibling;
+    const value = +closestCounter.textContent;
+    closestCounter.textContent++;
+    
+    
+  }
+  _minusVote(e) {
+    e.preventDefault();
+    const closestCounter = e.currentTarget.previousElementSibling;
+    closestCounter.textContent--;
   }
   _formatDate(date) {
     const calcDaysPassed = (date1, date2) =>
